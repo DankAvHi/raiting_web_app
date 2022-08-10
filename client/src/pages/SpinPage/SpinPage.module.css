@@ -1,2 +1,20 @@
 .SpinPage {
+     position: relative;
+
+     height: 100vh;
+}
+.presentItem {
+     width: 70px;
+     height: 70px;
+
+     background-image: none;
+     background: var(--present-gradient);
+}
+
+.presentListWrapper {
+     width: 70px;
+     height: 70px;
+}
+.wrapper {
+     width: 100%;
 }

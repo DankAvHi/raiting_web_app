@@ -1,9 +1,11 @@
 #FILES
 *.pem
 *.env
+server.txt
 
 #FOLDERS
 node_modules
 dist
 build
 client/build
+python

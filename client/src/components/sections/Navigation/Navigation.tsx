@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AppContext from "../../../app/App.context";
 import backImage from "./assets/backImage.png";
 import questionImage from "./assets/questionImage.png";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
      const location = useLocation();
+     const { user } = useContext(AppContext);
 
      const [showBackButton, setShowBackButton] = useState(false);
-
-     const backButtonOnClickHandler = () => window.history.back();
 
      useEffect(() => {
           setShowBackButton(!(location.pathname === "/"));
@@ -18,9 +18,9 @@ const Navigation = () => {
      return (
           <div className={styles.Navigation}>
                {showBackButton ? (
-                    <button className={`${styles.back} `} onClick={backButtonOnClickHandler}>
+                    <Link className={`${styles.back} `} to={"/main"}>
                          <img src={backImage} alt="" />
-                    </button>
+                    </Link>
                ) : (
                     <div className={styles.fakeBack}></div>
                )}
@@ -28,9 +28,9 @@ const Navigation = () => {
                <div className={styles.info}>
                     <p className={styles.balance}>
                          <span className={styles.balanceLabel}>{"Баланс: "}</span>
-                         <span className={styles.balanceValue}>{"1 голос"}</span>
+                         <span className={styles.balanceValue}>{`${user?.voutes} голос`}</span>
                     </p>
-                    <p className={styles.nick}>{"Arlene McCoy"}</p>
+                    <p className={styles.nick}>{`${user?.name}`}</p>
                </div>
                <Link to={"/question"}>
                     <img src={questionImage} alt="" />

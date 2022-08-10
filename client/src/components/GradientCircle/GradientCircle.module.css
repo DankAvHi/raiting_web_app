@@ -1,0 +1,13 @@
+.GradientCircle {
+     position: absolute;
+     transform: matrix(0.97, -0.26, 0.26, 0.97, 0, 0);
+     right: -25%;
+     bottom: 15%;
+
+     width: 180px;
+     height: 164px;
+
+     background: linear-gradient(264.82deg, #14ff00 13.33%, #ebff00 100.19%);
+     opacity: 0.4;
+     filter: blur(60px);
+}

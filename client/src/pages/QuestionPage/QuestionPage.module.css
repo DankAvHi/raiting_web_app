@@ -1,2 +1,14 @@
 .QuestionPage {
+     position: relative;
+
+     padding: 14px 15px 0;
+
+     height: 100vh;
+}
+
+.text {
+     margin-bottom: 20px;
+
+     font-weight: 300;
+     font-size: 0.875rem;
 }

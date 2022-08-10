@@ -1,0 +1,97 @@
+.ShopList {
+     overflow-y: auto;
+
+     padding-right: 1px;
+     padding-bottom: 10px;
+
+     width: 100%;
+     max-height: calc(100vh - 218px);
+
+     display: flex;
+     flex-direction: column;
+}
+.ShopList::-webkit-scrollbar {
+     width: 2px;
+}
+.ShopList::-webkit-scrollbar-thumb {
+     background: var(--brown-50);
+}
+.shop {
+     opacity: 0.79;
+
+     margin-bottom: 10px;
+
+     border-radius: 15px;
+
+     padding: 7px 28px 5px;
+
+     width: 100%;
+
+     background-color: var(--brown-60);
+
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.info {
+     position: relative;
+
+     display: flex;
+     flex-direction: column;
+}
+.infoBackground {
+     position: absolute;
+     left: -15px;
+     z-index: 0;
+
+     width: 62px;
+     height: 32px;
+
+     filter: blur(15px);
+     opacity: 0.56;
+     background: var(--accient-gradient);
+}
+
+.topPlace {
+     z-index: 2;
+     margin-bottom: 6px;
+
+     font-family: Inter;
+     font-size: 0.75rem;
+}
+.name {
+     opacity: 0.56;
+     z-index: 2;
+
+     font-family: Inter;
+     font-size: 0.625rem;
+}
+.url {
+     z-index: 2;
+     opacity: 0.56;
+
+     font-family: Inter;
+     font-size: 0.625rem;
+}
+.action {
+     display: flex;
+     flex-direction: column;
+}
+.voutes {
+     margin-bottom: 13px;
+
+     font-family: Inter;
+     font-size: 0.625rem;
+}
+.voute {
+     border-radius: 12px;
+
+     padding: 5px 8px;
+
+     background: var(--accient-gradient);
+
+     font-size: 0.625rem;
+     color: var(--black-00);
+     font-weight: 600;
+}

@@ -14,7 +14,7 @@ async def cmd_start(message: types.Message):
 
     await message.answer("test",
                          reply_markup=ReplyKeyboardMarkup().add(InlineKeyboardButton(text="test",
-                                                                                     web_app=WebAppInfo(url="https://4eb6-185-3-34-68.eu.ngrok.io/"))))
+                                                                                     web_app=WebAppInfo(url="https://f0bf-185-3-35-19.eu.ngrok.io/"))))
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

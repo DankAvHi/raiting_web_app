@@ -1,5 +1,5 @@
 .Header {
-     padding: 0 8px;
+     padding: 0 8px 12px;
 }
 .spin {
      margin-bottom: 12px;
@@ -10,7 +10,7 @@
 
      width: 100%;
 
-     background: var(--spin-link-background);
+     background: var(--accient-gradient);
 
      display: block;
 

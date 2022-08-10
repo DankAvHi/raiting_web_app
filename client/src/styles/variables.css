@@ -15,5 +15,6 @@
      --app-font-size: 1em;
      --app-background-color: var(--green-10);
 
-     --spin-link-background: linear-gradient(264.82deg, var(--green-90) 13.33%, var(--yellow-90) 100.19%);
+     --accient-gradient: linear-gradient(264.82deg, var(--green-90) 13.33%, var(--yellow-90) 100.19%);
+     --present-gradient: linear-gradient(264.82deg, var(--green-80) 13.33%, var(--yellow-80) 100.19%);
 }

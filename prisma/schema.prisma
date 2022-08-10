@@ -9,5 +9,21 @@ datasource db {
 }
 
 model user {
-  iduser Int @id @unique(map: "iduser_UNIQUE")
+  iduser   Int    @id @unique(map: "iduser_UNIQUE")
+  voutes   Int    @default(0)
+  presents String @db.LongText
+}
+
+model nomination {
+  idnomination String @id @unique(map: "idnomination_UNIQUE") @db.VarChar(45)
+  name         String @unique(map: "name_UNIQUE") @db.VarChar(45)
+  voutes       BigInt @default(0)
+}
+
+model shop {
+  idshop     Int    @id @unique(map: "idshop_UNIQUE") @default(autoincrement())
+  name       String @db.VarChar(45)
+  voutes     Int    @default(0)
+  url        String @db.VarChar(180)
+  nomination String @db.VarChar(45)
 }

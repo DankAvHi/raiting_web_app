@@ -11,7 +11,7 @@ const Nomination = ({ text, isActive, id }: NominationType) => {
      const activeClassName = isActive ? styles.border_active : null;
 
      return (
-          <Link to={`/#${id}`} className={`${styles.Nomination} `}>
+          <Link to={`/main#${id}`} className={`${styles.Nomination} `}>
                <p className={styles.text}>{text}</p>
 
                <div className={`${styles.border} ${activeClassName}`}></div>

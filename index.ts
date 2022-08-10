@@ -3,6 +3,8 @@ import express from "express";
 import fs from "fs";
 import https from "https";
 import path from "path";
+import apiRouter from "./src/api/index.api";
+import corsConfig from "./src/config/cors.config";
 import { IS_SECURE, serverConfig, STATIC_PATH } from "./src/config/server.config";
 
 if (!serverConfig) {
@@ -11,8 +13,11 @@ if (!serverConfig) {
 
 const app = express();
 
-app.use(cors());
+app.use(express.json());
+app.use(cors(corsConfig));
 app.use(express.static(path.resolve(STATIC_PATH)));
+
+app.use("/api", apiRouter);
 
 app.get("*", (_, res) => res.sendFile(path.resolve(STATIC_PATH, "index.html")));
 
