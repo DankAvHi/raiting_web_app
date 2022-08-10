@@ -1,0 +1,19 @@
+:root {
+     --black-00: black;
+     --brown-50: #2d2d2d;
+     --brown-60: #4d4d4d;
+     --white-80: #fff8f8;
+     --white-90: white;
+     --yellow-80: #bbc82b;
+     --yellow-90: #ebff00;
+     --green-10: #1b1f1a;
+     --green-20: #272a26;
+     --green-80: #42cc36;
+     --green-90: #14ff00;
+
+     --app-font-family: Montserrat;
+     --app-font-size: 1em;
+     --app-background-color: var(--green-10);
+
+     --spin-link-background: linear-gradient(264.82deg, var(--green-90) 13.33%, var(--yellow-90) 100.19%);
+}

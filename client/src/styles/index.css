@@ -1,0 +1,27 @@
+@import url("../assets/fonts/Montserrat/Montserrat.css");
+@import url("../assets/fonts/Inter/Inter.css");
+@import url("./variables.css");
+* {
+     margin: 0;
+
+     border: none;
+
+     padding: 0;
+
+     box-sizing: border-box;
+
+     background: transparent;
+
+     font-family: var(--app-font-family);
+     font-size: var(--app-font-size);
+     text-decoration: none;
+     color: var(--white-90);
+}
+
+html,
+body,
+#root {
+     height: 100%;
+
+     background-color: var(--app-background-color);
+}

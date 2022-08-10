@@ -1,0 +1,9 @@
+#FILES
+*.pem
+*.env
+
+#FOLDERS
+node_modules
+dist
+build
+client/build

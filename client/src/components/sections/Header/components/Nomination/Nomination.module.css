@@ -1,0 +1,23 @@
+.Nomination {
+     opacity: 0.9;
+     margin: 0 8px;
+
+     max-width: 80px;
+}
+
+.text {
+     padding-bottom: 4px;
+
+     font-size: 0.625rem;
+     font-weight: 300;
+     line-height: 1.2;
+}
+.border {
+     height: 1px;
+     width: 100%;
+
+     background: rgba(100%, 100%, 100%, 0.38);
+}
+.border_active {
+     background: var(--spin-link-background);
+}

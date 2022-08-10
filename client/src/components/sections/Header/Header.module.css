@@ -1,0 +1,26 @@
+.Header {
+     padding: 0 8px;
+}
+.spin {
+     margin-bottom: 12px;
+
+     border-radius: 10px;
+
+     padding: 12px 16px;
+
+     width: 100%;
+
+     background: var(--spin-link-background);
+
+     display: block;
+
+     text-align: center;
+     color: var(--black-00);
+     font-weight: 600;
+     font-size: 1.125rem;
+}
+.nominations {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
