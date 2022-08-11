@@ -39,3 +39,9 @@
      font-weight: 300;
      font-size: 0.875rem;
 }
+
+.notification {
+     border-radius: 20px;
+
+     background: var(--present-gradient);
+}

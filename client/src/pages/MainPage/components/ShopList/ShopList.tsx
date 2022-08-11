@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./ShopList.module.css";
 
 type ShopListProps = {
-     shopList: { name: string; url: string; voutes: number }[] | undefined;
+     shopList: { name: string; url: string; voutes: number; nomination: string }[] | undefined;
      loading: boolean;
 };
 

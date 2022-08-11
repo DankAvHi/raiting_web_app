@@ -19,8 +19,19 @@
      font-weight: 600;
      font-size: 1.125rem;
 }
+.spin_disabled {
+     background: var(--green-20);
+     color: var(--white-90);
+}
 .nominations {
      display: flex;
      align-items: center;
      justify-content: space-between;
+}
+.notification {
+     border-radius: 20px;
+
+     background: var(--present-gradient);
+
+     font-size: 0.8rem;
 }

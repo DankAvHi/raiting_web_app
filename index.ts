@@ -6,6 +6,7 @@ import path from "path";
 import apiRouter from "./src/api/index.api";
 import corsConfig from "./src/config/cors.config";
 import { IS_SECURE, serverConfig, STATIC_PATH } from "./src/config/server.config";
+import addVoutesSchedule from "./src/schedules/addVoutes.schedule";
 
 if (!serverConfig) {
      throw new Error(`❌ [server] could not read .env file, make sure it existed and contain fields`);
@@ -16,6 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(cors(corsConfig));
 app.use(express.static(path.resolve(STATIC_PATH)));
+
+addVoutesSchedule();
 
 app.use("/api", apiRouter);
 

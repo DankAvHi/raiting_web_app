@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Slide, toast } from "react-toastify";
 import { nominations, nominationsID } from "../../../app/App";
+import AppContext from "../../../app/App.context";
 import Nomination from "./components/Nomination/Nomination";
 import styles from "./Header.module.css";
 
 const Header = () => {
      const location = useLocation();
+     const { user } = useContext(AppContext);
 
      const locationID = location.hash.split("#")[1];
 
@@ -16,11 +20,36 @@ const Header = () => {
           );
      };
 
+     const vouteButtonNoVoutesOnClickHandler = () => {
+          toast(
+               typeof user?.voutes !== "undefined"
+                    ? "У вас нет голосов, заработайте их голосуя в номинациях"
+                    : "Не удалось загрузить информацию о балансе голосов",
+               {
+                    position: "top-right",
+                    autoClose: 1500,
+                    className: styles.notification,
+                    hideProgressBar: true,
+                    transition: Slide,
+                    closeButton: false,
+               }
+          );
+     };
+
      return (
           <div className={styles.Header}>
-               <Link className={styles.spin} to={"/spin"}>
-                    {"Крутить барабан"}
-               </Link>
+               {user?.voutes && user.voutes > 0 ? (
+                    <Link className={styles.spin} to={"/spin"}>
+                         {"Крутить барабан"}
+                    </Link>
+               ) : (
+                    <button
+                         onClick={vouteButtonNoVoutesOnClickHandler}
+                         className={`${styles.spin} ${styles.spin_disabled}`}
+                    >
+                         {"Крутить барабан"}
+                    </button>
+               )}
                <div className={styles.nominations}>
                     {nominations.map((nomination, index) => (
                          <Nomination

@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import requestServerError from "../error/requestServerError/requestServerError.error";
-import prisma from "../service/prisma/prisma.service";
+import requestServerError from "../../error/requestServerError/requestServerError.error";
+import prisma from "../../service/prisma/prisma.service";
 
 const checkUserController: RequestHandler = async (req, res) => {
      try {

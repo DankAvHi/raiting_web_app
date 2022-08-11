@@ -12,7 +12,7 @@ const Navigation = () => {
      const [showBackButton, setShowBackButton] = useState(false);
 
      useEffect(() => {
-          setShowBackButton(!(location.pathname === "/"));
+          setShowBackButton(!(location.pathname === "/main"));
      }, [location.pathname]);
 
      return (
@@ -27,8 +27,18 @@ const Navigation = () => {
 
                <div className={styles.info}>
                     <p className={styles.balance}>
-                         <span className={styles.balanceLabel}>{"Баланс: "}</span>
-                         <span className={styles.balanceValue}>{`${user?.voutes} голос`}</span>
+                         {user ? (
+                              typeof user.voutes !== "undefined" ? (
+                                   <>
+                                        <span className={styles.balanceLabel}>{"Баланс: "}</span>
+                                        <span className={styles.balanceValue}>{`${user.voutes} голос`}</span>
+                                   </>
+                              ) : (
+                                   <span className={styles.balanceLabel}>{"Не удалось загрузить баланс"}</span>
+                              )
+                         ) : (
+                              <span className={styles.balanceLabel}>{"Загрузка..."}</span>
+                         )}
                     </p>
                     <p className={styles.nick}>{`${user?.name}`}</p>
                </div>
