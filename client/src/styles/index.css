@@ -22,6 +22,7 @@
 a,
 button {
      transition: 0.1s;
+     cursor: pointer;
 }
 
 a:active,

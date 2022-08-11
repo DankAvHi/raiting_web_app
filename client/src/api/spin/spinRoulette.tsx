@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
-import { useHttp } from "./http.hook";
+import { useHttp } from "../http.hook";
 
-export default function useLoadShopsApi() {
+export default function useSpinRouletteApi() {
      const { request, error, clearError, loading } = useHttp();
 
      useEffect(() => {
@@ -10,12 +10,12 @@ export default function useLoadShopsApi() {
           }
      }, [error, clearError]);
 
-     const loadShops = useCallback(
-          async ({ nomination }: { nomination: string }) => {
+     const spinRoulette = useCallback(
+          async ({ iduser, idpresent }: { iduser: number; idpresent: number }) => {
                const data = await request({
-                    url: "/api/load-shops",
+                    url: "/api/spin/spin",
                     method: "POST",
-                    body: { nomination },
+                    body: { iduser, idpresent },
                });
 
                return data;
@@ -23,5 +23,5 @@ export default function useLoadShopsApi() {
           [request]
      );
 
-     return { loadShops, loading };
+     return { spinRoulette, loading };
 }

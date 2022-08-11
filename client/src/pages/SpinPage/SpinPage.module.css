@@ -1,20 +1,40 @@
 .SpinPage {
      position: relative;
 
-     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
-.presentItem {
-     width: 70px;
-     height: 70px;
+.loading {
+     text-align: center;
+     font-size: 2rem;
+}
 
-     background-image: none;
-     background: var(--present-gradient);
+.wheelContainer {
+     margin-bottom: 15px;
 }
+.spinButton {
+     margin-bottom: 28px;
 
-.presentListWrapper {
-     width: 70px;
-     height: 70px;
+     border-radius: 28px;
+
+     padding: 12px 14px;
+
+     background: var(--accient-gradient);
+
+     color: black;
+     font-weight: 600;
+     font-size: 1.063rem;
 }
-.wrapper {
-     width: 100%;
+.spinButton:disabled {
+     cursor: not-allowed;
+     transform: none;
+
+     background: var(--green-20);
+}
+.description {
+     max-width: 288px;
+
+     font-weight: 300;
+     font-size: 0.875rem;
 }

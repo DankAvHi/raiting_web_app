@@ -38,18 +38,20 @@ const Header = () => {
 
      return (
           <div className={styles.Header}>
-               {user?.voutes && user.voutes > 0 ? (
-                    <Link className={styles.spin} to={"/spin"}>
-                         {"Крутить барабан"}
-                    </Link>
-               ) : (
-                    <button
-                         onClick={vouteButtonNoVoutesOnClickHandler}
-                         className={`${styles.spin} ${styles.spin_disabled}`}
-                    >
-                         {"Крутить барабан"}
-                    </button>
-               )}
+               {location.pathname !== "/spin" ? (
+                    user?.voutes && user.voutes > 0 ? (
+                         <Link className={styles.spin} to={"/spin"}>
+                              {"Крутить барабан"}
+                         </Link>
+                    ) : (
+                         <button
+                              onClick={vouteButtonNoVoutesOnClickHandler}
+                              className={`${styles.spin} ${styles.spin_disabled}`}
+                         >
+                              {"Крутить барабан"}
+                         </button>
+                    )
+               ) : null}
                <div className={styles.nominations}>
                     {nominations.map((nomination, index) => (
                          <Nomination

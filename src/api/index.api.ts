@@ -1,10 +1,12 @@
 import { Router } from "express";
-import loadShopsController from "../controller/loadShops.controller";
+import memberRouter from "./member.api";
 import profileRouter from "./profile.api";
+import spinRouter from "./spin.api";
 
 const apiRouter = Router();
 
-apiRouter.post("/load-shops", loadShopsController);
+apiRouter.use("/member", memberRouter);
+apiRouter.use("/spin", spinRouter);
 apiRouter.use("/profile", profileRouter);
 
 export default apiRouter;

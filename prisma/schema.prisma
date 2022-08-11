@@ -20,8 +20,8 @@ model nomination {
   voutes       BigInt @default(0)
 }
 
-model shop {
-  idshop     Int    @id @unique(map: "idshop_UNIQUE") @default(autoincrement())
+model member {
+  idmember   Int    @id @unique(map: "idshop_UNIQUE") @default(autoincrement())
   name       String @db.VarChar(45)
   voutes     Int    @default(0)
   url        String @db.VarChar(180)
@@ -33,4 +33,11 @@ model user_voute_date {
   last_voute_date   String @db.Text
   nomination        String @db.VarChar(45)
   iduser            Int
+}
+
+model present {
+  idpresent   Int    @id @unique(map: "idpresent_UNIQUE") @default(autoincrement())
+  name        String @unique(map: "name_UNIQUE") @db.VarChar(45)
+  chance      Int
+  description String @db.Text
 }

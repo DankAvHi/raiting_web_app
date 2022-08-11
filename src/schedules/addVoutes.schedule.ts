@@ -4,11 +4,11 @@ import prisma from "../service/prisma/prisma.service";
 
 const addVoutesSchedule = () =>
      schedule.scheduleJob("*/10 * * * *", async () => {
-          await prisma.shop.findMany().then((shops) =>
-               shops.forEach(
-                    async (shop) =>
-                         await prisma.shop.update({
-                              where: { idshop: shop.idshop },
+          await prisma.member.findMany().then((members) =>
+               members.forEach(
+                    async (member) =>
+                         await prisma.member.update({
+                              where: { idmember: member.idmember },
                               data: { voutes: { increment: getRandomInRange(10, 150, 1) } },
                          })
                )

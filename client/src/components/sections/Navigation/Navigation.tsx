@@ -40,7 +40,7 @@ const Navigation = () => {
                               <span className={styles.balanceLabel}>{"Загрузка..."}</span>
                          )}
                     </p>
-                    <p className={styles.nick}>{`${user?.name}`}</p>
+                    {user?.name ? <Link to={"/prizes"} className={styles.nick}>{`${user.name}`}</Link> : null}
                </div>
                <Link to={"/question"}>
                     <img src={questionImage} alt="" />

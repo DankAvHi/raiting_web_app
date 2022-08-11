@@ -1,8 +1,8 @@
 .GradientCircle {
-     position: absolute;
+     position: fixed;
      transform: matrix(0.97, -0.26, 0.26, 0.97, 0, 0);
      right: -25%;
-     bottom: 15%;
+     bottom: -15%;
 
      width: 180px;
      height: 164px;

@@ -18,7 +18,7 @@ export const nominations: Nominations = [
 export const nominationsID = ["seller", "manufacturer", "forum"];
 
 const App = () => {
-     const { checkUser, loading: userLoading } = api().useCheckUserApi();
+     const { checkUser } = api().useCheckUserApi();
      const { telegramUserData } = useLoadTelegramUserData();
 
      const [user, setUser] = useState<AppContextType["user"]>();
@@ -40,7 +40,7 @@ const App = () => {
           }
      }, [telegramUserData, loadUser]);
 
-     const appRoutes = useAppRoutes((user && user.voutes! > 0) || false);
+     const appRoutes = useAppRoutes();
 
      if (!telegramUserData) {
           return <h2 className={styles.telegramAlert}>{"Не удалось получить данные из Telegram"}</h2>;
@@ -48,15 +48,14 @@ const App = () => {
 
      return (
           <AppContext.Provider value={{ user, loadUser }}>
-               {!userLoading ? (
-                    <div className={styles.App}>
-                         <Navigation />
-                         <main className={styles.main}>
-                              <Header />
-                              {appRoutes}
-                         </main>
-                    </div>
-               ) : null}
+               <div className={styles.App}>
+                    <Navigation />
+                    <main className={styles.main}>
+                         <Header />
+                         {appRoutes}
+                    </main>
+               </div>
+
                <ToastContainer />
           </AppContext.Provider>
      );

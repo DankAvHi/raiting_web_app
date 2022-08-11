@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import { api } from "../../api/index.api";
 import AppContext from "../../app/App.context";
@@ -7,7 +7,7 @@ import GradientCircle from "../../components/GradientCircle/GradientCircle";
 import styles from "./VoutePage.module.css";
 
 type LocationStateType = {
-     shop: {
+     member: {
           name: string;
           url: string;
           voutes: number;
@@ -25,21 +25,21 @@ const toastOptions = {
 
 const VoutePage = () => {
      const location = useLocation();
-     const navigate = useNavigate();
      const { voute, loading } = api().useVouteApi();
      const { user, loadUser } = useContext(AppContext);
 
-     const { shop } = location.state as LocationStateType;
+     const { member } = location.state as LocationStateType;
+
+     const vouteButtonDisabledClassName = user && user.voutes && user.voutes < 1 ? styles.voute_disabled : null;
 
      const vouteButtonOnClickHandler = async () => {
           try {
                if (!user) {
                     return toast("Не удалось отправить голос", toastOptions);
                }
-               const data = await voute({ id: user.id, nomination: shop.nomination });
+               const data = await voute({ id: user.id, nomination: member.nomination });
                if (data.succes) {
                     toast("Ваш голос зачислится в ближайшее время", toastOptions);
-                    navigate("/main");
                     loadUser();
                } else {
                     toast("Вы уже голосовали сегодня в этой номинации", toastOptions);
@@ -50,13 +50,18 @@ const VoutePage = () => {
      };
      return (
           <div className={styles.VoutePage}>
-               <p className={styles.name}>{shop.name}</p>
-               <a href={shop.url} target={"_blank"} rel="noreferrer" className={styles.url}>
-                    {shop.url}
+               <p className={styles.name}>{member.name}</p>
+               <a href={member.url} target={"_blank"} rel="noreferrer" className={styles.url}>
+                    {member.url}
                </a>
-               <button disabled={loading} onClick={vouteButtonOnClickHandler} className={styles.voute}>
+               <button
+                    disabled={loading}
+                    onClick={vouteButtonOnClickHandler}
+                    className={`${styles.voute} ${vouteButtonDisabledClassName}`}
+               >
                     {"Голосовать"}
                </button>
+
                <p className={styles.description}>
                     {
                          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
