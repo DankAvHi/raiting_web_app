@@ -7,7 +7,8 @@ const loadPrizesController: RequestHandler = async (req, res) => {
      try {
           const { id } = req.body;
 
-          const rawPrizesNames = (await prisma.user.findUnique({ where: { iduser: id } }))?.presents.split(";") || null;
+          const rawPrizesNames =
+               (await prisma.user.findUnique({ where: { iduser: String(id) } }))?.presents.split(";") || null;
           if (!rawPrizesNames) {
                return res.json({ prizes: [] });
           }

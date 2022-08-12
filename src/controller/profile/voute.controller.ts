@@ -8,7 +8,7 @@ const vouteController: RequestHandler = async (req, res) => {
           const { id, nomination } = req.body;
 
           const lastVoute = await prisma.user_voute_date.findFirst({
-               where: { iduser: id, nomination: nomination },
+               where: { iduser: String(id), nomination: nomination },
           });
 
           const currentDate = new Date(moment().format("MM-DD-YYYY")).getTime();
@@ -22,7 +22,7 @@ const vouteController: RequestHandler = async (req, res) => {
                     return res.json({ succes: false });
                }
 
-               await prisma.user.update({ where: { iduser: id }, data: { voutes: { increment: 1 } } });
+               await prisma.user.update({ where: { iduser: String(id) }, data: { voutes: { increment: 1 } } });
 
                const lastVouteDateId = lastVoute.iduser_voute_date;
 
@@ -34,10 +34,10 @@ const vouteController: RequestHandler = async (req, res) => {
                return res.json({ succes: true });
           }
 
-          await prisma.user.update({ where: { iduser: id }, data: { voutes: { increment: 1 } } });
+          await prisma.user.update({ where: { iduser: String(id) }, data: { voutes: { increment: 1 } } });
 
           await prisma.user_voute_date.create({
-               data: { iduser: id, last_voute_date: String(currentDate), nomination: nomination },
+               data: { iduser: String(id), last_voute_date: String(currentDate), nomination: nomination },
           });
 
           res.json({ succes: true });

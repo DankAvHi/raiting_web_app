@@ -6,12 +6,12 @@ const checkUserController: RequestHandler = async (req, res) => {
      try {
           const { id } = req.body;
 
-          const user = await prisma.user.findUnique({ where: { iduser: id } });
+          const user = await prisma.user.findUnique({ where: { iduser: String(id) } });
 
           if (!user) {
                const user = await prisma.user.create({
                     data: {
-                         iduser: id,
+                         iduser: String(id),
                          presents: "",
                          voutes: 0,
                     },

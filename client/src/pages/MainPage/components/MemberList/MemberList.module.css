@@ -1,12 +1,8 @@
 .MemberList {
-     overflow-y: auto;
-
      padding-right: 1px;
      padding-bottom: 10px;
 
      width: 100%;
-     max-height: calc(100vh - 218px);
-     min-height: 180px;
 
      display: flex;
      flex-direction: column;

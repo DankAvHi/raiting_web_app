@@ -9,7 +9,7 @@ datasource db {
 }
 
 model user {
-  iduser   Int    @id @unique(map: "iduser_UNIQUE")
+  iduser   String @id @unique(map: "iduser_UNIQUE") @db.VarChar(120)
   voutes   Int    @default(0)
   presents String @db.LongText
 }
@@ -32,7 +32,7 @@ model user_voute_date {
   iduser_voute_date Int    @id @unique(map: "iduser_voute_date_UNIQUE") @default(autoincrement())
   last_voute_date   String @db.Text
   nomination        String @db.VarChar(45)
-  iduser            Int
+  iduser            String @db.VarChar(120)
 }
 
 model present {
