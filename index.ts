@@ -5,7 +5,7 @@ import https from "https";
 import path from "path";
 import apiRouter from "./src/api/index.api";
 import corsConfig from "./src/config/cors.config";
-import { IS_SECURE, serverConfig, STATIC_PATH } from "./src/config/server.config";
+import { serverConfig, STATIC_PATH } from "./src/config/server.config";
 import addVoutesSchedule from "./src/schedules/addVoutes.schedule";
 
 if (!serverConfig) {
@@ -24,7 +24,7 @@ app.use("/api", apiRouter);
 
 app.get("*", (_, res) => res.sendFile(path.resolve(STATIC_PATH, "index.html")));
 
-if (IS_SECURE) {
+if (serverConfig.SECURE === "true") {
      const http = express();
      http.get("*", function (req, res) {
           res.redirect(302, "https://" + req.headers.host + req.url);
