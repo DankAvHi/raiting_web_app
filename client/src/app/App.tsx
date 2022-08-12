@@ -21,7 +21,7 @@ const App = () => {
      const { checkUser } = api().useCheckUserApi();
      const { telegramUserData } = useLoadTelegramUserData();
 
-     const [user, setUser] = useState<AppContextType["user"]>();
+     const [user, setUser] = useState<AppContextType["user"]>(null);
 
      const loadUser = useCallback(async () => {
           try {
@@ -30,7 +30,7 @@ const App = () => {
 
                return setUser({ ...telegramUserData, ...user });
           } catch (error) {
-               setUser({ ...telegramUserData! });
+               setUser({ ...telegramUserData!, presents: null, voutes: null });
           }
      }, [checkUser, telegramUserData]);
 

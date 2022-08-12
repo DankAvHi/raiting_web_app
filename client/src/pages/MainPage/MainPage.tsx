@@ -31,7 +31,7 @@ const MainPage = () => {
 
      return (
           <div className={styles.MainPage}>
-               {!loading ? (
+               {!loading && allVoutesCount ? (
                     <div className={styles.allVoutes}>
                          <p className={styles.allVoutesHeading}>{"Всего проголосовали"}</p>
                          <p className={styles.allVoutesValue}>{`${allVoutesCount} раза`}</p>

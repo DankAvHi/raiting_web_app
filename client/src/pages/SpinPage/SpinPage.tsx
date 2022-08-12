@@ -83,7 +83,7 @@ const SpinPage = () => {
                          />
                     </div>
                     <button
-                         disabled={start || user!.voutes! < 1}
+                         disabled={start || (user !== null && user.voutes !== null && user.voutes < 1)}
                          className={styles.spinButton}
                          onClick={spinButtonOnClickHandler}
                     >

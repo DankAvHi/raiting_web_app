@@ -1,3 +1,4 @@
+import { present } from "@prisma/client";
 import { RequestHandler } from "express";
 import requestServerError from "../../error/requestServerError/requestServerError.error";
 import prisma from "../../service/prisma/prisma.service";
@@ -11,9 +12,13 @@ const loadPrizesController: RequestHandler = async (req, res) => {
                return res.json({ prizes: [] });
           }
           const prizesNames = rawPrizesNames.map((prizeName) => prizeName.trim());
-          const prizes = await prisma.present
-               .findMany()
-               .then(async (presents) => presents.filter((present) => prizesNames.indexOf(present.name) !== -1));
+
+          let prizes: present[] = [];
+
+          for (let i = 0; i < prizesNames.length; i++) {
+               const prize = await prisma.present.findUnique({ where: { name: prizesNames[i] } });
+               if (prize) prizes.push(prize);
+          }
 
           res.json({ prizes });
      } catch (error) {

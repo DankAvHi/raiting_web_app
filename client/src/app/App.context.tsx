@@ -7,7 +7,7 @@ export type AppContextType = {
 };
 
 const initialContext: AppContextType = {
-     user: undefined,
+     user: null,
      loadUser: async () => {},
 };
 

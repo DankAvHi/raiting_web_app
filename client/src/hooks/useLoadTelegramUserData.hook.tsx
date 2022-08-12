@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TelegramUser } from "../types/User";
 
 const useLoadTelegramUserData = () => {
-     const [telegramUserData, setTelegramUserData] = useState<TelegramUser>();
+     const [telegramUserData, setTelegramUserData] = useState<TelegramUser | null>(null);
      const telegram = window.Telegram.WebApp;
      const rawUser = telegram.initDataUnsafe.user;
 
