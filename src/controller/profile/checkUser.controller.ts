@@ -16,8 +16,8 @@ const checkUserController: RequestHandler = async (req, res) => {
                          voutes: 0,
                     },
                });
-               const { iduser, ...response } = user;
-               return res.json(response);
+
+               return res.json({ user });
           }
 
           res.json({ user });
