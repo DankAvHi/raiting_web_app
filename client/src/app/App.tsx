@@ -30,6 +30,7 @@ const App = () => {
 
                return setUser({ ...telegramUserData, ...user });
           } catch (error) {
+               console.error("cannot load user");
                setUser({ ...telegramUserData!, presents: null, voutes: null });
           }
      }, [checkUser, telegramUserData]);
