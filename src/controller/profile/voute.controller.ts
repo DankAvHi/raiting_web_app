@@ -11,12 +11,13 @@ const vouteController: RequestHandler = async (req, res) => {
                where: { iduser: String(id), nomination: nomination },
           });
 
-          const currentDate = new Date(moment().format("MM-DD-YYYY")).getTime();
+          const currentDate = new Date(moment().format("MM-DD-YYYY, hh:mm"));
 
           if (lastVoute) {
-               const diffTime = Math.abs(currentDate - Number(lastVoute.last_voute_date));
-               const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-               const isDayGone = diffDays >= 1;
+               const diffTime = Math.abs(currentDate.getTime() - lastVoute.last_voute_date.getTime());
+               // const diffDays = diffTime / (1000 * 60 * 60 * 24);
+               const diffDays = diffTime / (1000 * 60);
+               const isDayGone = diffDays >= 2;
 
                if (!isDayGone) {
                     return res.json({ succes: false });
@@ -28,7 +29,7 @@ const vouteController: RequestHandler = async (req, res) => {
 
                await prisma.user_voute_date.update({
                     where: { iduser_voute_date: lastVouteDateId },
-                    data: { last_voute_date: String(currentDate) },
+                    data: { last_voute_date: currentDate.toISOString() },
                });
 
                return res.json({ succes: true });
@@ -37,7 +38,7 @@ const vouteController: RequestHandler = async (req, res) => {
           await prisma.user.update({ where: { iduser: String(id) }, data: { voutes: { increment: 1 } } });
 
           await prisma.user_voute_date.create({
-               data: { iduser: String(id), last_voute_date: String(currentDate), nomination: nomination },
+               data: { iduser: String(id), last_voute_date: currentDate.toISOString(), nomination: nomination },
           });
 
           res.json({ succes: true });

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { api } from "../../api/index.api";
 import AppContext from "../../app/App.context";
 import GradientCircle from "../../components/GradientCircle/GradientCircle";
@@ -19,8 +19,15 @@ const SpinPage = () => {
      const [showPrizeModal, setShowPrizeModal] = useState(false);
      const [prize, setPrize] = useState<Present | null>(null);
 
-     const prizes: WheelData[] =
-          presents?.map((present, index) => ({ option: present.name, id: present.idpresent })) || [];
+     const prizes: WheelData[] = useMemo(
+          () =>
+               presents?.map((present, index) => ({
+                    option: present.name,
+                    id: present.idpresent,
+                    chance: present.chance,
+               })) || [],
+          [presents]
+     );
 
      useEffect(() => {
           const loadPresentsState = async () => {
@@ -33,10 +40,16 @@ const SpinPage = () => {
 
      useEffect(() => {
           if (!start) {
-               const newPrizeNumber = Math.floor(Math.random() * prizes.length);
-               setPrizeNumber(newPrizeNumber);
+               const rnd = Math.random();
+               let acc = 0;
+               for (let i = 0, r; (r = prizes[i]); i++) {
+                    acc += r.chance / 100;
+                    if (rnd < acc) {
+                         setPrizeNumber(r.id);
+                    }
+               }
           }
-     }, [start, prizes.length]);
+     }, [start, prizes]);
 
      const spinButtonOnClickHandler = () => {
           if (user!.voutes! > 0) setStart(true);
@@ -45,6 +58,7 @@ const SpinPage = () => {
      const wheelOnStopHandler = async () => {
           if (user!.voutes! > 0) {
                const prize = prizes[prizeNumber];
+               console.log(prizeNumber);
                try {
                     const data = await spinRoulette({ iduser: user!.id, idpresent: prize.id });
                     setPrize(data.present);
