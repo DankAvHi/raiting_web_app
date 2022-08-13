@@ -18,7 +18,7 @@ const spinController: RequestHandler = async (req, res) => {
                where: { iduser: String(iduser) },
                data: {
                     presents: `${user!.presents} ${present!.name};`,
-                    voutes: present!.name === "1 голос" ? { increment: 1 } : { decrement: 1 },
+                    voutes: present!.name === "1 голос" ? { increment: 0 } : { decrement: 1 },
                },
           });
 
