@@ -8,6 +8,28 @@ import { Present } from "../../types/Present";
 import PrizeModal from "./components/PrizeModal/PrizeModal";
 import styles from "./SpinPage.module.css";
 
+const randomizer = (values: WheelData[]) => {
+     let i,
+          pickedValue,
+          randomNr = Math.random() * 100,
+          threshold = 0;
+
+     for (i = 0; i < values.length; i++) {
+          if (values[i].chance === 0) {
+               continue;
+          }
+
+          threshold += values[i].chance;
+          if (threshold > randomNr) {
+               pickedValue = values[i].id - 1;
+               break;
+          }
+     }
+     console.log(pickedValue);
+
+     return pickedValue || 0;
+};
+
 const SpinPage = () => {
      const { user, loadUser } = useContext(AppContext);
      const { loadPresents, loading } = api().useLoadPresentsApi();
@@ -40,14 +62,8 @@ const SpinPage = () => {
 
      useEffect(() => {
           if (!start) {
-               const rnd = Math.random();
-               let acc = 0;
-               for (let i = 0, r; (r = prizes[i]); i++) {
-                    acc += r.chance / 100;
-                    if (rnd < acc) {
-                         setPrizeNumber(r.id);
-                    }
-               }
+               setPrizeNumber(randomizer(prizes));
+               setStart(false);
           }
      }, [start, prizes]);
 
@@ -58,7 +74,6 @@ const SpinPage = () => {
      const wheelOnStopHandler = async () => {
           if (user!.voutes! > 0) {
                const prize = prizes[prizeNumber];
-               console.log(prizeNumber);
                try {
                     const data = await spinRoulette({ iduser: user!.id, idpresent: prize.id });
                     setPrize(data.present);
