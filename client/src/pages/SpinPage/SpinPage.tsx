@@ -25,7 +25,6 @@ const randomizer = (values: WheelData[]) => {
                break;
           }
      }
-     console.log(pickedValue);
 
      return pickedValue || 0;
 };
