@@ -100,12 +100,12 @@ const SpinPage = () => {
                               mustStartSpinning={start}
                               prizeNumber={prizeNumber}
                               data={prizes}
-                              backgroundColors={["#42CC36", "#BBC82B"]}
+                              backgroundColors={["#0cd33e", "#cde033"]}
                               textColors={["#000"]}
                               onStopSpinning={wheelOnStopHandler}
                               fontSize={16}
                               outerBorderWidth={0}
-                              spinDuration={0.7}
+                              spinDuration={1.4}
                               radiusLineColor={"#272A26"}
                               textDistance={55}
                          />
