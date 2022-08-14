@@ -15,10 +15,9 @@ const vouteController: RequestHandler = async (req, res) => {
 
           if (lastVoute) {
                const diffTime = Math.abs(currentDate.getTime() - lastVoute.last_voute_date.getTime());
-               // const diffDays = diffTime / (1000 * 60 * 60 * 24);
-               const diffDays = diffTime / (1000 * 60);
-               const isDayGone = diffDays >= 2;
+               const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
+               const isDayGone = diffDays >= 2;
                if (!isDayGone) {
                     return res.json({ succes: false });
                }

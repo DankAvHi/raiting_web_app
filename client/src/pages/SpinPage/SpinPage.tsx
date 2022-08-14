@@ -105,7 +105,7 @@ const SpinPage = () => {
                               onStopSpinning={wheelOnStopHandler}
                               fontSize={16}
                               outerBorderWidth={0}
-                              spinDuration={1}
+                              spinDuration={0.7}
                               radiusLineColor={"#272A26"}
                               textDistance={55}
                          />
