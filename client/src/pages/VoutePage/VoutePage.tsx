@@ -39,7 +39,7 @@ const VoutePage = () => {
                }
                const data = await voute({ id: user.id, nomination: member.nomination });
                if (data.succes) {
-                    toast("Ваш голос зачислится в ближайшее время", toastOptions);
+                    toast("Спасибо за голос! Ваш баланс пополнен.", toastOptions);
                     loadUser();
                } else {
                     toast("Вы уже голосовали сегодня в этой номинации", toastOptions);
@@ -64,7 +64,7 @@ const VoutePage = () => {
 
                <p className={styles.description}>
                     {
-                         "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+                         "Голосовать можно раз в сутки в каждой номинации. Ваш голос учтется в рейтинге в течение 5 минут с момента голосования."
                     }
                </p>
                <GradientCircle />

@@ -3,13 +3,13 @@ import getRandomInRange from "../common/getRandomInRange";
 import prisma from "../service/prisma/prisma.service";
 
 const addVoutesSchedule = () =>
-     schedule.scheduleJob("*/10 * * * *", async () => {
+     schedule.scheduleJob("*/5 * * * *", async () => {
           await prisma.member.findMany().then((members) =>
                members.forEach(
                     async (member) =>
                          await prisma.member.update({
                               where: { idmember: member.idmember },
-                              data: { voutes: { increment: getRandomInRange(10, 150, 1) } },
+                              data: { voutes: { increment: getRandomInRange(1, 7, 1) } },
                          })
                )
           );

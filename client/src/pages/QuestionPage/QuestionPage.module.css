@@ -1,7 +1,13 @@
 .QuestionPage {
      padding: 14px 15px 0;
 }
+.heading {
+     margin-bottom: 15px;
 
+     font-weight: 500;
+     font-size: 1.2rem;
+     text-align: center;
+}
 .text {
      margin-bottom: 20px;
 

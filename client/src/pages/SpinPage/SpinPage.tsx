@@ -118,9 +118,8 @@ const SpinPage = () => {
                          {"Крутить"}
                     </button>
                     <p className={styles.description}>
-                         {
-                              "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
-                         }
+                         {`Голосуйте каждый день во всех трех номинациях, чтобы зарабатывать голоса на свой баланс и тратить их здесь.
+                              Самые удачливые заберут самые жирные призы!`}
                     </p>
                </div>
                {showPrizeModal ? (
