@@ -37,7 +37,6 @@ const PrizesPage = () => {
                                    <div className={styles.prize}>
                                         <h3 className={styles.name}>{prize.name}</h3>
                                         <p className={styles.description}>{prize.description}</p>
-                                        <p className={styles.chance}>{`Шанс получения: ${prize.chance}%`}</p>
                                    </div>
                               );
                          })
