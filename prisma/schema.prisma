@@ -26,11 +26,13 @@ model member {
   voutes     Int    @default(0)
   url        String @db.VarChar(180)
   nomination String @db.VarChar(45)
+  min_voutes Int    @default(0)
+  max_voutes Int    @default(1)
 }
 
 model user_voute_date {
   iduser_voute_date Int      @id @unique(map: "iduser_voute_date_UNIQUE") @default(autoincrement())
-  last_voute_date   DateTime @db.Date
+  last_voute_date   DateTime @db.DateTime(0)
   nomination        String   @db.VarChar(45)
   iduser            String   @db.VarChar(120)
 }

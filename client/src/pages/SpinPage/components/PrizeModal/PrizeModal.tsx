@@ -17,7 +17,6 @@ const PrizeModal = ({ prize, setPrize, setShowPrizeModal }: PrizeModalProps) => 
                <div className={styles.container}>
                     <h2 className={styles.name}>{prize.name}</h2>
                     <p className={styles.description}>{prize.description}</p>
-                    <p className={styles.chance}>{`Шанс выпадения: ${prize.chance}%`}</p>
                     <button onClick={closeButtonOnClickHandler} className={styles.close}>
                          {"Закрыть"}
                     </button>

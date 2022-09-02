@@ -28,7 +28,7 @@ const Navigation = () => {
                <div className={styles.info}>
                     <p className={styles.balance}>
                          {user ? (
-                              typeof user.voutes !== "undefined" ? (
+                              typeof user.voutes !== "undefined" && user.voutes !== null ? (
                                    <>
                                         <span className={styles.balanceLabel}>{"Баланс: "}</span>
                                         <span className={styles.balanceValue}>{`${user.voutes} голос`}</span>

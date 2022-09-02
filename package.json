@@ -4,13 +4,17 @@
      "description": "telegram web app for raiting",
      "main": "index.js",
      "scripts": {
+          "db-migrate": "dotenv -e production.env -- npx prisma migrate deploy",
           "db-refresh": "dotenv -e production.env -- npx prisma db pull && npx prisma generate",
+          "db-push": "dotenv -e production.env -- npx prisma db push && npx prisma generate",
           "db-studio": "dotenv -e production.env -- npx prisma studio",
           "build": "cross-env NODE_ENV=production  npm run build-client && npm run build-server",
           "build-client": "cd client && npm run build",
           "build-server": "npx rimraf dist && webpack",
           "start": "cross-env NODE_ENV=production  npm run build && node dist/index.js",
+          "dev-db-migrate": "dotenv -e development.env -- npx prisma migrate dev",
           "dev-db-refresh": "dotenv -e development.env -- npx prisma db pull && npx prisma generate",
+          "dev-db-push": "dotenv -e development.env -- npx prisma db push && npx prisma generate",
           "dev-db-studio": "dotenv -e development.env -- npx prisma studio",
           "dev-start": "cross-env NODE_ENV=development  npx nodemon index.ts",
           "dev-start-secure": "cross-env NODE_ENV=development SECURE=true npx nodemon index.ts"

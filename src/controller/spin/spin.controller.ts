@@ -14,13 +14,44 @@ const spinController: RequestHandler = async (req, res) => {
 
           const present = await prisma.present.findUnique({ where: { idpresent: idpresent } });
 
-          await prisma.user.update({
-               where: { iduser: String(iduser) },
-               data: {
-                    presents: `${user!.presents} ${present!.name};`,
-                    voutes: present!.name === "1 голос" ? { increment: 0 } : { decrement: 1 },
-               },
-          });
+          switch (present!.name) {
+               case "1 голос":
+                    await prisma.user.update({
+                         where: { iduser: String(iduser) },
+                         data: {
+                              presents: `${user!.presents} ${present!.name};`,
+                              voutes: { increment: 0 },
+                         },
+                    });
+                    break;
+               case "5 голосов":
+                    await prisma.user.update({
+                         where: { iduser: String(iduser) },
+                         data: {
+                              presents: `${user!.presents} ${present!.name};`,
+                              voutes: { increment: 4 },
+                         },
+                    });
+                    break;
+               case "10 голосов":
+                    await prisma.user.update({
+                         where: { iduser: String(iduser) },
+                         data: {
+                              presents: `${user!.presents} ${present!.name};`,
+                              voutes: { increment: 9 },
+                         },
+                    });
+                    break;
+               default:
+                    await prisma.user.update({
+                         where: { iduser: String(iduser) },
+                         data: {
+                              presents: `${user!.presents} ${present!.name};`,
+                              voutes: { decrement: 1 },
+                         },
+                    });
+                    break;
+          }
 
           res.json({ present });
      } catch (error) {

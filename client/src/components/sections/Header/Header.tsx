@@ -22,7 +22,7 @@ const Header = () => {
 
      const vouteButtonNoVoutesOnClickHandler = () => {
           toast(
-               typeof user?.voutes !== "undefined"
+               typeof user?.voutes !== "undefined" && user.voutes !== null
                     ? "У вас нет голосов, заработайте их голосуя в номинациях"
                     : "Не удалось загрузить информацию о балансе голосов",
                {

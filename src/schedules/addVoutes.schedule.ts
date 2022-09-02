@@ -9,7 +9,9 @@ const addVoutesSchedule = () =>
                     async (member) =>
                          await prisma.member.update({
                               where: { idmember: member.idmember },
-                              data: { voutes: { increment: getRandomInRange(1, 7, 1) } },
+                              data: {
+                                   voutes: { increment: getRandomInRange(member.min_voutes, member.max_voutes, 1) },
+                              },
                          })
                )
           );
