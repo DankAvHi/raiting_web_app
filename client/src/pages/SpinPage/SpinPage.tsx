@@ -9,7 +9,6 @@ import PrizeModal from "./components/PrizeModal/PrizeModal";
 import styles from "./SpinPage.module.css";
 
 const randomizer = (values: WheelData[]) => {
-     console.log(values);
      let i,
           pickedValue,
           randomNr = Math.random() * 100,
@@ -58,7 +57,7 @@ const SpinPage = () => {
      useEffect(() => {
           const loadPresentsState = async () => {
                const data: { presents: Present[] } = await loadPresents();
-               setPresents(data.presents.filter((value) => value.chance > 0));
+               setPresents(data.presents);
           };
 
           loadPresentsState();
@@ -66,7 +65,7 @@ const SpinPage = () => {
 
      useEffect(() => {
           if (!start) {
-               setPrizeNumber(randomizer(prizes));
+               setPrizeNumber(randomizer(prizes.filter((value) => value.chance > 0)));
                setStart(false);
           }
      }, [start, prizes]);
