@@ -9,19 +9,25 @@ import PrizeModal from "./components/PrizeModal/PrizeModal";
 import styles from "./SpinPage.module.css";
 
 const randomizer = (values: WheelData[]) => {
+     const copyValues: WheelData[] = [...values].filter((value) => value.chance > 0);
+
      let i,
           pickedValue,
           randomNr = Math.random() * 100,
           threshold = 0;
 
-     for (i = 0; i < values.length; i++) {
-          if (values[i].chance === 0) {
+     for (i = 0; i < copyValues.length; i++) {
+          if (copyValues[i].chance >= 100) {
+               pickedValue = copyValues[i].id - 1;
+               break;
+          }
+          if (copyValues[i].chance === 0) {
                continue;
           }
 
-          threshold += values[i].chance;
+          threshold += copyValues[i].chance;
           if (threshold > randomNr) {
-               pickedValue = values[i].id - 1;
+               pickedValue = copyValues[i].id - 1;
                break;
           }
      }
