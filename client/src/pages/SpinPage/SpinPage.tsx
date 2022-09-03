@@ -9,25 +9,24 @@ import PrizeModal from "./components/PrizeModal/PrizeModal";
 import styles from "./SpinPage.module.css";
 
 const randomizer = (values: WheelData[]) => {
-     const copyValues: WheelData[] = [...values].filter((value) => value.chance > 0);
-
+     console.log(values);
      let i,
           pickedValue,
           randomNr = Math.random() * 100,
           threshold = 0;
 
-     for (i = 0; i < copyValues.length; i++) {
-          if (copyValues[i].chance >= 100) {
-               pickedValue = copyValues[i].id - 1;
+     for (i = 0; i < values.length; i++) {
+          if (values[i].chance >= 100) {
+               pickedValue = values[i].id - 1;
                break;
           }
-          if (copyValues[i].chance < 1) {
+          if (values[i].chance < 1) {
                continue;
           }
 
-          threshold += copyValues[i].chance;
+          threshold += values[i].chance;
           if (threshold > randomNr) {
-               pickedValue = copyValues[i].id - 1;
+               pickedValue = values[i].id - 1;
                break;
           }
      }
@@ -59,7 +58,7 @@ const SpinPage = () => {
      useEffect(() => {
           const loadPresentsState = async () => {
                const data: { presents: Present[] } = await loadPresents();
-               setPresents(data.presents);
+               setPresents(data.presents.filter((value) => value.chance > 0));
           };
 
           loadPresentsState();
@@ -78,8 +77,6 @@ const SpinPage = () => {
 
      const wheelOnStopHandler = async () => {
           if (user!.voutes! > 0) {
-               console.log(prizes);
-               console.log(prizeNumber);
                const prize = prizes[prizeNumber || 0];
                try {
                     const data = await spinRoulette({ iduser: user!.id, idpresent: prize.id });
@@ -96,7 +93,7 @@ const SpinPage = () => {
      if (!presents) {
           return <p className={styles.loading}>{"Загрузка..."}</p>;
      }
-     if (!prizeNumber) {
+     if (prizeNumber === null) {
           return <p className={styles.loading}>{"Загрузка..."}</p>;
      }
      if (!loading && !presents) {
@@ -116,7 +113,7 @@ const SpinPage = () => {
                               onStopSpinning={wheelOnStopHandler}
                               fontSize={16}
                               outerBorderWidth={0}
-                              spinDuration={0}
+                              spinDuration={1.4}
                               radiusLineColor={"#272A26"}
                               textDistance={55}
                          />
