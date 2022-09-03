@@ -19,8 +19,8 @@ const randomizer = (values: WheelData[]) => {
                pickedValue = values[i].id - 1;
                break;
           }
+          console.log(values[i]);
           if (values[i].chance < 1) {
-               console.log(values[i]);
                continue;
           }
 
