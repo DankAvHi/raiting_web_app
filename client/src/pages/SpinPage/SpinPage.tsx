@@ -16,17 +16,16 @@ const randomizer = (values: WheelData[]) => {
 
      for (i = 0; i < values.length; i++) {
           if (values[i].chance >= 100) {
-               pickedValue = values[i].id;
+               pickedValue = i;
                break;
           }
-          console.log(values[i]);
           if (values[i].chance < 1) {
                continue;
           }
 
           threshold += values[i].chance;
           if (threshold > randomNr) {
-               pickedValue = values[i].id;
+               pickedValue = i;
                break;
           }
      }
