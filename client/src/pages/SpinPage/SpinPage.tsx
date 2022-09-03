@@ -10,7 +10,7 @@ import styles from "./SpinPage.module.css";
 
 const randomizer = (values: WheelData[]) => {
      const copyValues: WheelData[] = [...values].filter((value) => value.chance > 0);
-     console.log(copyValues);
+
      let i,
           pickedValue,
           randomNr = Math.random() * 100,
@@ -42,7 +42,7 @@ const SpinPage = () => {
 
      const [start, setStart] = useState(false);
      const [presents, setPresents] = useState<Present[]>();
-     const [prizeNumber, setPrizeNumber] = useState(0);
+     const [prizeNumber, setPrizeNumber] = useState<number | null>(null);
      const [showPrizeModal, setShowPrizeModal] = useState(false);
      const [prize, setPrize] = useState<Present | null>(null);
 
@@ -78,7 +78,9 @@ const SpinPage = () => {
 
      const wheelOnStopHandler = async () => {
           if (user!.voutes! > 0) {
-               const prize = prizes[prizeNumber];
+               console.log(prizes);
+               console.log(prizeNumber);
+               const prize = prizes[prizeNumber || 0];
                try {
                     const data = await spinRoulette({ iduser: user!.id, idpresent: prize.id });
                     setPrize(data.present);
@@ -92,6 +94,9 @@ const SpinPage = () => {
      };
 
      if (!presents) {
+          return <p className={styles.loading}>{"Загрузка..."}</p>;
+     }
+     if (!prizeNumber) {
           return <p className={styles.loading}>{"Загрузка..."}</p>;
      }
      if (!loading && !presents) {
