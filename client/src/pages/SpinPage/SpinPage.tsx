@@ -10,7 +10,7 @@ import styles from "./SpinPage.module.css";
 
 const randomizer = (values: WheelData[]) => {
      const copyValues: WheelData[] = [...values].filter((value) => value.chance > 0);
-
+     console.log(copyValues);
      let i,
           pickedValue,
           randomNr = Math.random() * 100,
@@ -21,7 +21,7 @@ const randomizer = (values: WheelData[]) => {
                pickedValue = copyValues[i].id - 1;
                break;
           }
-          if (copyValues[i].chance === 0) {
+          if (copyValues[i].chance < 1) {
                continue;
           }
 
@@ -111,7 +111,7 @@ const SpinPage = () => {
                               onStopSpinning={wheelOnStopHandler}
                               fontSize={16}
                               outerBorderWidth={0}
-                              spinDuration={1.4}
+                              spinDuration={0}
                               radiusLineColor={"#272A26"}
                               textDistance={55}
                          />
