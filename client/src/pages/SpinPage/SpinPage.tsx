@@ -20,6 +20,7 @@ const randomizer = (values: WheelData[]) => {
                break;
           }
           if (values[i].chance < 1) {
+               console.log(values[i]);
                continue;
           }
 
