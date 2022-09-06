@@ -11,13 +11,13 @@ const vouteController: RequestHandler = async (req, res) => {
                where: { iduser: String(id), nomination: nomination },
           });
 
-          const currentDate = new Date(moment().format("MM-DD-YYYY, hh:mm"));
+          const currentDate = new Date(moment().format("MM-DD-YYYY, hh:mm:ss"));
 
           if (lastVoute) {
                const diffTime = Math.abs(currentDate.getTime() - lastVoute.last_voute_date.getTime());
                const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-               const isDayGone = diffDays >= 2;
+               const isDayGone = diffDays >= 1;
                if (!isDayGone) {
                     return res.json({ succes: false });
                }
